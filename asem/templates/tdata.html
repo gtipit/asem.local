@@ -1,0 +1,28 @@
+
+<table class="tdata" border="0" >
+<caption><h3>
+    {% if vtype %}
+    {{ vtype | capitalize }}
+    {% endif %} показники з {{ sdate }} по {{ edate }}</h3></caption>
+<tr>
+    <th></th>
+    {% for thnm in thname %}
+    <th>{{ thnm[0] }}<br><span class="thfoot">{{ thnm[1] }}</span></th>
+    {% endfor %}
+</tr>
+
+{% for tdata in tdatas %}
+<tr>
+    <td align="right">{{ loop.index }}.</td>
+    {% for i in tddata %}
+    {% if i == 3 %}
+    <td>  {{ date_format(tdata[i]) }} </td> 
+    {% else %}
+    <td>  {{ tdata[i] }} </td> 
+    {% endif %}
+    {% endfor %}
+</tr>
+{% else %}
+    <li><em>Unbelievable.  No entries here so far</em></li>
+{% endfor %}
+</table>

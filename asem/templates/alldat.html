@@ -1,0 +1,29 @@
+
+  <table class="tdata" border="1" >
+  <tr>
+    <th></th>
+    <th>Дата</th>
+    <th>Время</th>
+    <th>Q1,<br> m³/h</th>
+    <th>Q2,<br> m³/h</th>
+    <th>T1,<br> °C</th>
+    <th>T2,<br> °C</th>
+    <th>PE,<br> kWt</th>
+    <th>EE,<br> GKal</th>
+  </tr>
+
+    {% for tdata in tdatas %}
+    <tr>
+    <td align="right">{{ loop.index }}.</td>
+    {% for i in [3, 4, 5, 6, 7, 8, 10, 18] %}
+    {% if i == 3 %}
+    <td>  {{ date_format(tdata[i]) }} </td> 
+    {% else %}
+    <td>  {{ tdata[i] }} </td> 
+    {% endif %}
+    {% endfor %}
+    </tr>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </table>

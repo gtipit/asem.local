@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<title>ASEM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/pdf_style.css') }}">
+<style type="text/css">
+    @page { size: A4; margin: 1cm; }
+    @font-face { font-family: Arial; src: url("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"); }
+    body { font-size: 14px; line-height: 1em; font-family: Arial; }    
+    a { color: #FB9925; }
+    h3 { font-weight: bold; font-size: 18px; }
+    table { -pdf-keep-in-frame-mode: shrink; }
+</style>
+</head>
+<body>
+<div class=page>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
+</body>
+</html>

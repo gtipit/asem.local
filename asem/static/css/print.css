@@ -1,0 +1,26 @@
+/* print.css для asem.local */
+/* скытие элементов ненужных для печати */
+@page {
+size 8.5in 11in; 
+margin: 1cm
+}
+.filter {
+    display: none;
+}
+
+.header {
+    display: none;
+}
+
+.alldat {
+    width: 900px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 100px;
+    page-break-after: always;
+    /*display: none;*/
+}
+
+.futter {
+    display: none;
+}

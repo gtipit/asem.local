@@ -1,0 +1,16 @@
+<form action="{{ url_for('thermodata') }}/{{ ttype }}" method=post class=add-entry>
+<!-- <input type="submit" value="Обрати"> -->
+<table>
+    <tr>
+        <!-- <td>з:</td><td><input type="date" name="sdate" value="{{sdate}}"></td> -->
+        <td style="font-size: 85%; font-weight: bold; text-transform: uppercase;">З:</td><td><input type="text"  id = "datepicker_s" name="sdate" value="{{ sdate }}"></td>
+    <!-- </tr> -->
+    <!-- <tr> -->
+        <!-- <td>по:</td><td><input type="date" name="edate" value="{{edate}}"></td> -->
+        <td style="font-size: 85%; font-weight: bold; text-transform: uppercase;">ПО:</td><td><input type="text" id = "datepicker_e" name="edate" value="{{ edate }}"></td>
+    <td>
+<input class="obraty" type="submit" value="Обрати">
+    </td>
+    </tr>
+</table>
+</form>

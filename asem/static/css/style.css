@@ -1,0 +1,345 @@
+style.css для asem.local*/
+html {
+
+}
+
+body {
+    padding: 0px;
+    background-color: #4F81BD;
+    font-family: Arial, Verdana;
+}
+
+/*div {
+    border: 1px solid black;
+}
+*/
+.page {
+    width: 1200px;
+    margin: 5px auto;
+    background-color: #FFFFFF;
+}
+
+.header {
+    background-image: url('/static/images/header/header_back.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100px;
+    background-color: #fff !important;
+    /*width:1130px;*/
+}
+
+.brand{
+    float: left;
+}
+
+.brand img{
+    margin: 15px 0 0 70px;
+}
+
+#hmenu{
+    padding-left: 30px;
+    padding-top: 50px;
+    float: left;
+}
+
+.version{
+    float: right;
+    font-size: 80%;
+    margin: 45px 63px 0 0;
+}
+
+/*.header table {
+    width: 100%;
+}*/
+
+#hmenu li {
+    display: inline;
+    padding: 10px 0px;
+    background-color: #DEEBEF;
+}
+
+#hmenu li:hover a {
+    color: #ffffff;
+    background-color: #2B4D59;
+}
+
+#hmenu li:hover{
+    background-color: #2B4D59;
+    /*cursor: pointer;*/
+}
+
+#hmenu li a.active{
+    background-color: #9DC3D1;
+}
+
+#hmenu a{
+    color: #2E2E2E;
+    font-weight: bold;
+    text-shadow: none;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+
+.nazva_zakladu{
+    background-color: #DEEBEF;
+    border: 2px solid #9DC3D1;
+    border-radius: 6px;
+    margin: 20px auto;
+    padding: 0 5px 5px;
+    text-align: center;
+    width: 900px;
+}
+
+.prylady {
+    margin: 20px 0;
+}
+
+.prylady table{
+margin: 0 auto;
+}
+
+.prylady td, th {
+    border: 0px solid #FFFFFF;
+    border-style: solid 1px;
+    border-collapse: collapse;
+}
+
+.prylady table th,td {
+    padding: 5px;
+    margin: 5px;
+}
+
+.prylady th{
+    background-color: #9DC3D1;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 80%;
+}
+
+.prylady td{
+    background-color: #DEEBEF; 
+    text-align: center;
+}
+
+table #schema{
+    margin: 0 auto !important;
+}
+
+.filter {
+    /*float: left;*/
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    width: 450px;
+    border: 2px solid #9DC3D1;
+}
+
+.filter p{
+    border-bottom: 2px solid #9DC3D1;
+}
+
+.statist {
+
+}
+
+table.statist {
+    width: 500px;
+}
+
+.alldat {
+    float: left;
+    /*margin-left: 5px;*/
+    width: 1200px;
+    text-align: center;
+    min-height: 640px;
+}
+.alldat table {
+    /*width: 500px;*/
+    margin: auto;
+    border-style: solid 1px;
+    border-collapse: collapse;
+
+}
+.alldat table th,td {
+    padding: 5px;
+    margin: 5px;
+
+}
+
+.thfoot {
+    font-size: smaller;
+    font-style: normal;
+    font-weight: normal; 
+}
+
+table#schema {
+    width: 801px;
+    height: 601px;
+    padding: 0px;
+    margin: 0px;
+    /*border-color:  transparent;*/
+}
+
+table#schema td {
+    width: 5%;
+    height: 5%;
+    padding: 0px;
+    margin: 0px;
+    border-color:  transparent;
+}
+/*vidomist*/
+table.parteplosp {
+    
+}
+table.parteplosp td {
+    text-align: left;
+    padding: 1px;
+}
+table.parteplosp .tdleft {
+    font-size: 90%;
+    width: 50%;
+}
+table.typevstobl {
+    
+}
+table.typevstobl td {
+    text-align: left;
+    padding: 0px;
+}
+table.vspidpys {
+    width: 100%;
+}table.vspidpys td {
+    text-align: left;
+}
+.errtext p, ol, ul {
+    text-align: left;
+}
+
+.futter {
+    clear: both;
+    height: 50px;
+    text-align: center;
+}
+
+
+/*Період*/
+
+.obraty{
+    background-color: #9DC3D1;
+    padding: 10px 15px;
+    border: 2px solid #DEEBEF;
+    font-size: 85%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.obraty:hover{
+    background-color: #DEEBEF;
+}
+
+.obraty:active{
+    background-color: #9DC3D1;
+}
+
+#datepicker_s{
+    background: none repeat scroll 0 0 #DEEBEF;
+    font-size: 85%;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-align: center;
+    border: 2px solid #9DC3D1;
+}
+
+#datepicker_e{
+    background: none repeat scroll 0 0 #DEEBEF;
+    font-size: 85%;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-align: center;
+    border: 2px solid #9DC3D1;
+}
+
+/*Начало работы с Вкладками Периодов */
+
+            #wrap{
+                margin:30px auto;
+                width:916px;
+            }
+            #lineTabs{
+                height:30px;
+                list-style:none;
+                margin:0px auto;
+                padding:0px;
+                padding-right:30px;
+                padding-left:383px;
+                width:916px;
+            }
+            #lineTabs li{
+                display:block;
+                float:left;
+                margin:0px;
+                padding:0px;
+                position:relative;
+                overflow:visible;
+                text-align:center;
+                width:145px;
+            }
+            #lineTabs li a{
+                background:url('/static/images/tab.png');
+                color:#000000;
+                display:block;
+                font:normal 14px arial;
+                height:15px;
+                margin:0px -10px;
+                padding:8.7px 0px;
+                position:relative;
+                text-decoration:none;
+                width:152px;
+            }
+            #lineTabs li a.active{
+                background:url('/static/images/tab_act.png');
+                color:#000000;
+                z-index:50;
+            }
+            #lineTabs li a:hover{
+                background:url('/static/images/tab_hover.png');
+                color:#ffffff;
+                z-index:30;
+            }
+            #content{
+                background:white;
+                border:1px solid #4c9ac3;
+                margin:0px;
+                padding:10px;
+                text-align:justify;
+            }
+
+    .statist th{
+        background-color: #9DC3D1;
+        border: 2px solid #FFFFFF; 
+    }
+
+    .statist td{
+        background-color: #DEEBEF;
+        border: 2px solid #FFFFFF; 
+    }
+
+    .tdata th{
+        background-color: #9DC3D1;
+        border: 2px solid #FFFFFF; 
+    }
+
+    .tdata td{
+        /*background-color: #DEEBEF;*/
+        border: 2px solid #FFFFFF; 
+    }
+
+    .tdata tr:nth-child(even){
+       background-color: #DEEBEF; 
+    }
+
+    .tdata tr:nth-child(odd){
+        background-color: #C4D9DF; 
+    }

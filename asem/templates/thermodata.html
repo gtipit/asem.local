@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+{% block body %}
+<!-- thermodata.html -->
+    <ul id="lineTabs">
+        <li><a href={{ url_for('thermodata') }}/curr {{ classm[0] }}>Поточні</a></li>
+        <li><a href={{ url_for('thermodata') }}/hour {{ classm[1] }}>Погодинні</a></li>
+        <li><a href={{ url_for('thermodata') }}/day {{ classm[2] }}>Подобові</a></li>
+    </ul>
+        <div style="width: 100%; height: 1px; clear: both;"></div>
+            {% block filter %}
+        <div class="filter">
+            <p>Обрати Період</p>
+            {% include 'left_filter.html' %}
+        </div>
+            {% endblock %}
+        <div class="alldat">
+        <p><h2>Відомість теплоспоживання</h2>з {{ sdate }} по {{ edate }}</p>
+        <!-- Статистика -->
+            {% block statis %}
+            <table class="statist" border="0">
+            <caption>Показники(статистика):</caption>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <th>
+                        Максимальні
+                    </th>
+                    <th>
+                        Мінімалні
+                    </th>
+                    <th>
+                        Середні
+                    </th>
+                    <th>
+                        Сумарні
+                    </th>
+                </tr>
+            {% if tstats %}
+            {% for i in range(5) %}
+            <tr>
+                <th>
+                    {{ snames[i] }}
+                </th>
+                <td>
+                    {{ tstats[i * 3] }}
+                </td>
+                <td>
+                    {{ tstats[i * 3 + 1] }}
+                </td>
+                <td>
+                    {{ '%0.3f' % tstats[i * 3 + 2] | float }}
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+            {% for i in range(5, 8) %}
+            <tr>
+                <th>
+                    {{ snames[i] }}
+                </th>
+                <td>
+                    {{ tstats[i * 3 + 0] }}
+                </td>
+                <td>
+                    {{ tstats[i * 3 + 1] }}
+                </td>
+                <td>
+                </td>
+                <td>
+                    {{ tstats[i * 3 + 2] }}
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </table>
+            {% endblock %}
+        <!-- Статистика -->
+            {% block alldat %}
+            <!-- <p>alldat</p> -->
+            {% include 'tdata.html' %}
+            {% endblock %}
+        </div>
+{% endblock %}

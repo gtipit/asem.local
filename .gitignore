@@ -1,0 +1,5 @@
+# .gitignore
+.hg
+tmp
+*.pyc
+*.sqlite

@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+<!-- index.html -->
+{% block header %}
+<div class="header">
+   <!--  <p style="text-align: center">Комунальне підприємство "Група впровадження проекту з енергозбереження
+        в адміністративних і громадських будівлях м.Києва"</p>
+    <h2 style="text-align: center">Автоматизована система енергомоніторингу (АСЕМ)</h2> -->
+    <a class="brand" href="http://www.kyivesko.com.ua/">
+    <img src="/static/images/logo/logo_w.png">
+    </a>
+     <!-- Меню -->
+    <ul id="hmenu">
+    <li><a href={{ url_for('index') }} {{ classh[0] }}>Головна</a></li>
+    <li><a href={{ url_for('thermodata') }} {{ classh[1] }}>Перегляд</a></li>
+    <li><a href={{ url_for('vidomist') }} {{ classh[2] }}>Відомість</a></li>
+    <li><a href={{ url_for('zhurnal') }} {{ classh[3] }}>Журнал</a></li>
+    </ul>
+    <div class="version">
+    Локальний модуль(ver 0.1)
+    </div>
+</div>
+{% endblock %}
+    <!-- Заклад-объект -->
+    {% block zaklad %}
+    <div class="nazva_zakladu">
+        <h3>{{ zparam[0] }}</h3>
+        {{ zparam[1] }} {{ zparam[2] }}, {{ zparam[3] }}, {{ zparam[4] }}
+    </div>
+    {% endblock %}
+    {% block prylad %}
+    <div class="prylady">
+    <table border="0">
+        <caption style="text-transform:uppercase; font-weight:bold; background-color:#9DC3D1;">Прилади, під`єднані до АСЕМ</caption>
+        <tr>
+            <th>
+                №
+            </th>
+            <th>
+                Назва
+            </th>
+            <th>
+                Тип
+            </th>
+            <th>
+                Заводський<br> номер
+            </th>
+            <th>
+                Дата<br> встановлення
+            </th>
+            <th>
+                Дата<br> повірки
+            </th>
+        </tr>
+        {% for entry in entries %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ entry.pld_nname }}</td>
+                <td>{{ entry.pld_fname }}</td>
+                <td>{{ entry.pld_snomer }}</td>
+                <td>{{ date_format(entry.pld_dvstan) }}</td>
+                <td>{{ date_format(entry.pld_poverp) }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">
+                    <em>Unbelievable.  No entries here so far</em>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    </div>
+    {% endblock %}
+
+{% block body %}
+    <div style="width: 100%; height: 1px; clear: both;"></div>
+    <!-- <div class="filter"> -->
+        {% block filter %}
+        {% endblock %}
+    <!-- </div> -->
+    <div class="alldat">
+        {% block alldat %}
+        <table border="0" style="width: 100%;">
+            <tr>
+                <td colspan="2" style="width: 802px; height: 602px;">
+                    <!-- <p>alldat</p> -->
+                    <table id="schema" border="1"     background="static/images/el800x600.png">
+                        <caption>Поточні показники</caption>
+                    {% for r in range(20) %}
+                    <tr>
+                        {% for c in range(20) %}
+                        {% if schema[r][c][1] %}
+                        {% if r in [4, 5, 6, 7] and c == 13 %}
+                        <td colspan="{{ schema[r][c][1] }}" align="left">
+                            <strong>{{ schema[r][c][0] }}</strong>
+                        </td>
+                        {% else %}
+                        <td colspan="{{ schema[r][c][1] }}">
+                            {{ schema[r][c][0] }} 
+                        </td>
+                        {% endif %}
+                        {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 800px;">
+                    <!-- график -->
+                    <img src = "{{ plotimg }}" />
+                </td>
+            
+                <td>
+                <table>
+                    <caption>Опис помилок</caption>
+                    <tr>
+                        <td>
+<div class="errtext">                            
+<h4>Q1 – витрата в подавальному трубопроводі в куб. м./годину.</h4>
+
+<p>
+    
+Необхідно слідкувати:
+<ol>
+    
+<li>Якщо витрата практично постійна – це свідчить, що:</li>
+    <ol type="a"> 
+ <li>регулятор не працює;</li>
+ <li>недостатня температура подачі теплоносія (як правило таке спостерігається при температурі зовні -5 і нижче;</li>
+    </ol> 
+<li>Якщо налаштоване зниження в нічні години і на вихідні – витрата в ці години зменшується (за умови, що не було різкого похолодання);</li>
+<li>Якщо Q1=0 опалення відключене.</li>
+</ol>
+</p>
+
+
+<h4>T1 – температура в подавальному трубопроводі °C.</h4>
+<p>
+Необхідно слідкувати:
+<ol>
+<li>Як правило вона становить 50-100 °C.</li> 
+<li>!!!!! Якщо Т1 150 і вище, або нижче 5 °C   – проблеми з лічильником теплової енергії.</li>
+<li>Якщо опалення відключається може знижуватись до 15-30 °C.</li>
+</ol>
+</p>
+<h4>T2 – температура в зворотньому трубопроводі °C .</h4>
+<p>
+Необхідно слідкувати:
+<ol>
+<li>Як правило вона становить 30-60 °C.</li> 
+<li>!!!!! Якщо Т2 150 і вище, або нижче 5 °C   – проблеми з лічильником теплової енергії.</li>
+<li>Якщо опалення відключається може знижуватись до 15-30 °C.</li>
+<li>Різниця між T1 та T2 не повинна бути менша ніж 4 °C  (вказує на проблему). Як правило різниця більше 10 °C.</li>
+</ol>
+</p>
+
+<h4>P – потужність системи опалення, кВт</h4>
+<p>
+<ol>
+<li>Якщо PE=0 – опалення відключено.</li>
+<li>За умови нормальної роботи системи регулювання – показник змінюється протягом доби і тижня (чим холодніше на вулиці тим він більший).</li>
+</p>
+<h4>E – Накопичені показники тепло споживання, Гкал.</h4>
+<p>
+Накопичені показники, що можна побачити на екрані тепло лічильника, повинні поступово збільшуватись.
+</p>
+</div>
+
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <!-- <tr> -->
+            <!-- </tr> -->
+        </table>
+        {% endblock %}
+
+    </div>
+{% endblock %}

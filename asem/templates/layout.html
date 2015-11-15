@@ -1,0 +1,67 @@
+<!doctype html>
+<html  lang="en">
+<head>
+<title>ASEM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+<!-- Calendar -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="{{ url_for('static', filename='jquery/jquery.ui.datepicker-ru.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery/jquery.ui.datepicker-ua.js') }}"></script>
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+<script>
+$(function() {
+    $( "#datepicker_s" ).datepicker({
+        changeMonth: false,
+        changeYear: false,
+        numberOfMonths: 1,
+        showButtonPanel: true,
+        autoSize: true
+
+    });
+
+    $( "#datepicker_e" ).datepicker({
+        changeMonth: false,
+        changeYear: false,
+        numberOfMonths: 1,
+        showButtonPanel: true,
+        autoSize: true
+
+    });
+
+    // $( "#datepicker" ).datepicker( );
+    // $( "#datepicker" ).datepicker( "option", "dateFormat", "dd.mm.yy" );
+});
+
+</script>
+<!-- Calendar -->
+
+
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+<link rel=stylesheet media=print type=text/css href="{{ url_for('static', filename='css/print.css') }}">
+</head>
+<body>
+<div class="page">
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block header %}{% endblock %}
+  {% block zaklad %}{% endblock %}
+  {% block prylad %}{% endblock %}
+  {% block body %}{% endblock %}
+<div class="futter">
+{% block futter%}
+<!-- <div style="width: 100%; height: 10px; clear: both;"></div> -->
+<!-- <div style="text-align: center;"> -->
+<p>КП "ГВП" ASEM-
+<script type="text/javascript">document.write(new Date().getFullYear());</script>
+</p>
+<!-- </div> -->
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

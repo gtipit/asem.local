@@ -1,0 +1,39 @@
+@page {
+    size: A4;
+    margin: 1cm;
+}
+@font-face {
+    font-family: Arial;
+    src: url("/home/ztipit/.fonts/Arial.ttf");
+}
+body {
+    font-size: 14px;
+    line-height: 1em;
+    font-family: Arial;
+}    
+a {
+    color: #FB9925; }
+h3 {
+    font-weight: bold;
+    font-size: 18px;
+}
+table { 
+    -pdf-keep-in-frame-mode: shrink; 
+    border-style: solid 1px;
+    border-collapse: collapse;
+}
+.tdata th { 
+    padding-bottom: 1mm;
+    padding-left: 1mm;
+    padding-right: 1mm;
+    padding-top: 1mm;
+}
+.tdata td { 
+    padding-bottom: 1mm;
+    padding-left: 1mm;
+    padding-right: 1mm;
+    padding-top: 1mm;
+}
+.spnpp {
+    width: 1cm;
+}

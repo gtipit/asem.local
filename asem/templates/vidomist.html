@@ -1,0 +1,336 @@
+{% extends "index.html" %}
+{% block body %}
+<!-- vidomist.html -->
+    {% block prylad %}
+    {% endblock %}
+    <div style="width: 100%; height: 1px; clear: both;"></div>
+        {% block filter %}
+    <div class="filter">
+            <p>Обрати Період</p>
+            {% include 'left_filter.html' %}
+    </div>
+        {% endblock %}
+    <div class="alldat">
+    <!-- Статистика -->
+        {% block statis %}
+        {% endblock %}
+    <!-- Статистика -->
+        {% block alldat %}
+    <!-- Ведомость -->
+    <!-- Шапка -->
+        <p style="text-align: right">Додаток 2</p>
+        <table border="0" style="width: 100%;">
+            <tr>
+                <td style="width: 30%;">
+                    <table border="0" class="parteplosp">
+                        <tr>
+                            <td class="tdleft">
+                                Особистий рахунок
+                            </td>
+                            <th>
+                                620328
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="tdleft">
+                                Договірні навантаження
+                            </td>
+                            <td>
+                                0,206 Гкал/г
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdleft">
+                                Опалення
+                            </td>
+                            <td>
+                                0,206 Гкал/г
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdleft">
+                                Гар. водопостачання
+                            </td>
+                            <td>
+                                ---
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdleft">
+                                Вентиляція
+                            </td>
+                            <td>
+                                ---
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ВСЬОГО:
+                            </td>
+                            <th>
+                                0,206 Гкал/г
+                            </th>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <div style="padding: 5px;"><strong>
+                    ВІДОМІСТЬ
+                    </strong>
+                    </div>
+                    <div style="padding: 5px;">
+                    обліку споживання
+                     теплової енергії
+                    </div>
+                    <div style="padding: 5px;">
+                     Комунальне підприемство
+                      "Головний інформаційно -
+                      обчислювальний центр"
+                      КМДА
+                    </div>
+                    <div style="padding: 5px;">
+                      який знаходиться за адресою:
+                    </div>
+                    <div style="padding: 5px;">
+                      м. Київ. вул.Космічна, 12А
+                    </div>
+                    <div style="padding: 5px;">
+                      з {{ sdate }} по {{ edate }}
+                    </div>
+                </td>
+                <td style="width: 30%;">
+                    <table class="typevstobl">
+                        <tr>
+                            <th colspan="2">
+                                Тип встановленого обладнання:
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Теплолічильник Multical UF
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                                 № 6199454
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Дата держпов.
+                            </td>
+                            <td>
+                                06.08.2012
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Витратомір Ultraflow65
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                № 3742123
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Дата держпов.
+                                
+                            </td>
+                            <td>
+                                06.08.2012
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                0,03 - 6,0 м3/ч
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                Δt - 3°C
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                ДУ - 20                
+                            </td>
+                        </tr>
+                            
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                <table border="1" class="vsthdata">
+                    <tr>
+                        <th rowspan="3">
+                            № з/п
+                        </th>
+                        <th rowspan="3">
+                            Дата
+                        </th>
+                        <th colspan="4">
+                            ПОДАВАЛЬНИЙ ТРУБОПРОВІД
+                        </th>
+                        <th rowspan="3">
+                            Зворотній трубопровід 
+                        </th>
+                        <th rowspan="3">
+                            Примітка
+                        </th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">
+                            Кількість годин наробки т/лічильника, год
+                        </th>
+                        <th rowspan="2">
+                            Добова витрата теплоносія, м3
+                        </th>
+                        <th colspan="2">
+                            Добова витрата тепла
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Гдж (МВт)
+                        </th>
+                        <th>
+                            Гкал
+                        </th>
+                    </tr>
+                    {% for tdata in tdatas %}
+                    <tr>
+                        <td align="right">{{ loop.index }}.</td>
+                        {% for i in [0, 1, 2, 3, 4] %}
+                        {% if i == 0 %}
+                        <td>  {{ date_format(tdata[i]) }} </td> 
+                        {% elif i == 2 %}
+                        <td>  {{ '%0.0f' % tdata[i] | float }} </td> 
+                        {% elif i == 4 %}
+                        <td>  {{ '%0.2f' % tdata[i] | float }} </td> 
+                        {% else %}
+                        <td>  {{ tdata[i] }} </td> 
+                        {% endif %}
+                        {% endfor %}
+                        <td></td>
+                        {% if loop.index == 1 %}
+                        <td rowspan="4" style="text-align: left;">
+                            журнал на {{ qsdat }} <br>
+                            H = {{ sstats[0] }}<br>
+                            V1={{ sstats[1] }}<br>
+                            E1={{ sstats[2] }}
+                        </td>
+                        {% elif loop.index == tdatas|count - 3 %}
+                        <td rowspan="4" style="text-align: left;">
+                            журнал на {{edate }}<br>
+                            H = {{ estats[0] }}<br>
+                            V1={{ estats[1] }}<br>
+                            E1={{ estats[2] }}
+                        </td>
+                        {% else %}
+                            {% if loop.index in [2, 3, 4, tdatas|count - 2, tdatas|count - 1, tdatas|count]%}
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% else %}
+                        <li><em>Unbelievable.  No entries here so far</em></li>
+                    {% endfor %}
+                    <!-- всего -->
+                    <tr>
+                        <td colspan="2">
+                            Всього:
+                        </td>
+                        <td>
+                            {{ sumavg[0] }}
+                        </td>
+                        <td>
+                            {{ '%0.0f' % sumavg[1] | float }}
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            {{ '%0.2f' % sumavg[2]  | float }}
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <!-- средние -->
+                    <tr>
+                        <td colspan="2">
+                            Середні:
+                        </td>
+                        <td>
+                            {{ sumavg[3] }}
+                        </td>
+                        <td>
+                            {{ '%0.0f' % sumavg[4] | float }}
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            {{ '%0.2f' % sumavg[5] | float }}
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                <table class="vspidpys">
+                    <tr>
+                        <td>
+Розрахунок виконав: ______________                                                                   
+                        </td>
+                        <td>
+Дата здачі:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+Відповідальний представник споживача відомості __________________
+                        </td>
+                        <td>
+_____________
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    <!-- Примечания -->
+    <!-- Данные -->
+    <!-- Подписи -->
+        <!-- <p>alldat</p> -->
+
+        {% endblock %}
+    </div>
+
+{% endblock %}

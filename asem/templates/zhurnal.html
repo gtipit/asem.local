@@ -1,0 +1,184 @@
+{% extends "index.html" %}
+{% block body %}
+<!-- vidomist.html -->
+    {% block prylad %}
+    {% endblock %}
+    <div style="width: 100%; height: 1px; clear: both;"></div>
+        {% block filter %}
+    <div class="filter">
+            <p>Обрати Період</p>
+            {% include 'left_filter.html' %}
+    </div>
+        {% endblock %}
+    <div class="alldat">
+    <!-- Статистика -->
+        {% block statis %}
+        {% endblock %}
+    <!-- Статистика -->
+        {% block alldat %}
+    <!-- Ведомость -->
+    <!-- Шапка -->
+        <p style="text-align: right">Додаток 1</p>
+        <table border="0" style="width: 100%;">
+            <tr>
+                <td style="width: 30%;">
+                </td>
+                <td>
+                    <div style="padding: 5px;"><strong>
+                    Форма журнала 
+                    </strong>
+                    </div>
+                    <div style="padding: 5px;">
+                      з {{ sdate }} по {{ edate }}
+                    </div>
+                </td>
+                <td style="width: 30%;">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                <table border="1" class="vsthdata">
+                    <tr>
+                        <th rowspan="3">№ з/п</th>
+                        <th rowspan="3">Дата</th>
+                        <th colspan="9">ПОДАВАЛЬНИЙ ТРУБОПРОВІД</th>
+                        <th colspan="3">Зворотній трубопровід </th>
+                        <th rowspan="3">Примітка</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">показання лічільника наробка часу, год.</th>
+                        <th colspan="3">Витрата теплоносія, м3</th>
+                        <th colspan="3">кількість теплової енергії, Гкал</th>
+                        <th colspan="3">Витрата теплоносія, м3</th>
+                    </tr>
+                    <tr>
+                        {% for i in range(4) %}
+                        <th>поточна</th>
+                        <th>за добу</th>
+                        <th>з поч. м-ця</th>
+                        {% endfor %}
+                    </tr>
+                    <!-- Номера колонок -->
+                    <tr>
+                        {% for i in range(1,16) %}
+                        <td>{{ loop.index }}</td>
+                        {% endfor %}
+                    </tr>
+                    <!-- Номера колонок -->
+                    {% for tdata in zhurnal %}
+                    <tr>
+                        <td align="right">{{ loop.index }}.</td>
+                        {% for i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] %}
+                        {% if i == 0 %}
+                        <td>  {{ date_format(tdata[i]) }} </td> 
+                        {% elif i in [4, 5, 6] %}
+                        <td>  {{ '%0.0f' % tdata[i] | float }} </td> 
+                        {% elif i in [7, 8, 9] %}
+                        <td>  {{ '%0.2f' % tdata[i] | float }} </td> 
+                        {% else %}
+                        <td>  {{ tdata[i] }} </td> 
+                        {% endif %}
+                        {% endfor %}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% else %}
+                        <tr><td colspan="15"><em>
+                        <font color="red">Відсутні дані за обраний період!</font>
+                        </em></td></tr>
+                    {% endfor %}
+                    <!-- всего -->
+                    <tr>
+                        <td colspan="2">
+                            Всього:
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            {{ sumavg[0] }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{ '%0.0f' % sumavg[1] | float }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{ '%0.2f' % sumavg[2] | float }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- средние -->
+                    <tr>
+                        <td colspan="2">
+                            Середні:
+                        </td>
+                        <td></td>
+                        <td>
+                            {{ sumavg[3] }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{ '%0.0f' % sumavg[4] | float }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{ '%0.2f' % sumavg[5] | float }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                <table class="vspidpys">
+                    <tr>
+                        <td>
+Розрахунок виконав: ______________                                                                   
+                        </td>
+                        <td>
+Дата здачі________________
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+Відповідальний:_________________
+                        </td>
+                        <td>
+Майстер__________________
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+Представник споживача:__________
+                        </td>
+                        <td>
+Прийняв__________________
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    <!-- Примечания -->
+    <!-- Данные -->
+    <!-- Подписи -->
+        <!-- <p>alldat</p> -->
+
+        {% endblock %}
+    </div>
+{% endblock %}
