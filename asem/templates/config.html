@@ -1,4 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
-{{ pageName }}
+<div class="alldat">
+{{ page_name }}
+<br>
+{{ host_name }}
+<br>
+{{ host_osys }}
+<br>
+<!-- Host Free -->
+<table>
+{% for fldn in host_free._fields %}
+<tr>
+<td align="left">{{ fldn }}:</td>
+<td align="right">{{ (host_free[fldn] / 1048576) | int if fldn != 'percent' else host_free[fldn] }}
+    {{ 'M' if fldn != 'percent' else '%' }} </td>
+</tr>
+{% endfor %}
+</table>
+<!-- Host Free -->
+<br>
+{{ disk_stat }}
+<br>
+</div>
 {% endblock %}

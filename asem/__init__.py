@@ -7,3 +7,4 @@ asem.config.from_object('config')
 db = SQLAlchemy(asem)
 
 from views import views
+asem.debug = True

@@ -10,7 +10,7 @@
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="{{ url_for('static', filename='jquery/jquery.ui.datepicker-ru.js') }}"></script>
 <script src="{{ url_for('static', filename='jquery/jquery.ui.datepicker-ua.js') }}"></script>
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 <script>
 $(function() {
@@ -45,18 +45,36 @@ $(function() {
 </head>
 <body>
 <div class="page">
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block header %}{% endblock %}
-  {% block zaklad %}{% endblock %}
-  {% block prylad %}{% endblock %}
-  {% block body %}{% endblock %}
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block mymenu %}
+    <div class="header">
+   <!--  <p style="text-align: center">Комунальне підприємство "Група впровадження проекту з енергозбереження
+        в адміністративних і громадських будівлях м.Києва"</p>
+    <h2 style="text-align: center">Автоматизована система енергомоніторингу (АСЕМ)</h2> -->
+    <a class="brand" href="http://www.asem.com.ua/">
+    <!-- <img src="/static/images/logo/logo_w.png"> -->
+    asem.com.ua
+    </a>
+     <!-- Меню -->
+    <ul id="hmenu">
+    <li><a href={{ url_for('index') }}>Головна</a></li>
+    <li><a href={{ url_for('config') }}>Конфигурация</a></li>
+    </ul>
+    </div>
+
+    {% endblock %}
+    {% block header %}{% endblock %}
+    {% block zaklad %}{% endblock %}
+    {% block prylad %}{% endblock %}
+    {% block body %}{% endblock %}
 <div class="futter">
 {% block futter%}
 <!-- <div style="width: 100%; height: 10px; clear: both;"></div> -->
 <!-- <div style="text-align: center;"> -->
-<p>КП "ГВП" ASEM-
+<small>Локальний модуль(ver 0.2)</small>
+<p>ASEM-
 <script type="text/javascript">document.write(new Date().getFullYear());</script>
 </p>
 <!-- </div> -->
