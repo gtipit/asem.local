@@ -1,5 +1,5 @@
 # .gitignore
-.hg
+.hg*
 tmp
 *.pyc
 *.sqlite
