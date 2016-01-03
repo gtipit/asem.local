@@ -42,6 +42,13 @@ $(function() {
 
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 <link rel=stylesheet media=print type=text/css href="{{ url_for('static', filename='css/print.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/jquery.jqplot.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/plugins/jqplot.barRenderer.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/plugins/jqplot.highlighter.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/plugins/jqplot.cursor.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/plugins/jqplot.pointLabels.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jqplot/plugins/jqplot.dateAxisRenderer.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jqplot/jquery.jqplot.css') }}" />
 </head>
 <body>
 <div class="page">
@@ -61,6 +68,7 @@ $(function() {
     <ul id="hmenu">
     <li><a href={{ url_for('index') }}>Головна</a></li>
     <li><a href={{ url_for('config') }}>Конфигурация</a></li>
+    <li><a href={{ url_for('jqplot') }}>Графики</a></li>
     </ul>
     </div>
 
