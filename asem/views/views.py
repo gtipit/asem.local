@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from asem import asem
 from flask import Flask, __version__, request, session, g, redirect
-from flask import  url_for, abort, render_template, flash, make_response
+from flask import url_for, abort, render_template, flash, make_response
 
 from subprocess import check_output
 from psutil import virtual_memory
@@ -11,11 +11,12 @@ from datetime import datetime
 
 DATABASE = '../onewinet/digitemp.sqlite'
 
+
 @asem.route('/')
 @asem.route('/index')
 def index():
     # return "Hello! I am ASEM. <br> Flask version - %s" % __version__
-    return render_template('index.html', flask_version = __version__)
+    return render_template('index.html', flask_version=__version__)
 ###
 
 
@@ -29,12 +30,12 @@ def config():
     host_free = virtual_memory()
     disk_stat = check_output(['df', '-h']).decode('utf-8')
     return render_template('config.html', page_name=page_name,
-        host_name=host_name,
-        host_osys=host_osys,
-        host_kern=host_kern,
-        host_free=host_free,
-        disk_stat=disk_stat,
-        )
+                           host_name=host_name,
+                           host_osys=host_osys,
+                           host_kern=host_kern,
+                           host_free=host_free,
+                           disk_stat=disk_stat,
+                           )
 
 
 @asem.route('/jqplot')
@@ -52,8 +53,9 @@ def jqplot():
     s1 = []
     for row in rows:
         s1.append([datetime.combine(datetime.strptime(row[0], '%Y-%m-%d'),
-                                    datetime.strptime(row[1], '%H:%M:%S').time()).strftime("%Y-%m-%d %H:%M"),
-                                    row[2]])
+                                    datetime.strptime(row[1], '%H:%M:%S').time()
+                                    ).strftime("%Y-%m-%d %H:%M"),
+                  row[2]])
     query = ''' SELECT cdt_cdate, cdt_ctime, cdt_value
                 FROM curdata
                 WHERE cdt_cdate > '2016-01-01'
@@ -64,13 +66,15 @@ def jqplot():
     s2 = []
     for row in rows:
         s2.append([datetime.combine(datetime.strptime(row[0], '%Y-%m-%d'),
-                                    datetime.strptime(row[1], '%H:%M:%S').time()).strftime("%Y-%m-%d %H:%M"),
-                                    row[2]])
+                                    datetime.strptime(row[1], '%H:%M:%S').time()
+                                    ).strftime("%Y-%m-%d %H:%M"),
+                  row[2]])
     cur.close()
     return render_template('jqplot.html', page_name=page_name,
-        s1=s1,
-        s2=s2,
-        )
+                           s1=s1,
+                           s2=s2,
+                           )
+
 
 def get_db():
     # db = getattr(g, '_database', None)
@@ -88,4 +92,4 @@ def close_connection(exception):
 
 
 ###
-## the End ##
+# # the End # #
