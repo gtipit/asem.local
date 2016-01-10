@@ -8,6 +8,7 @@ from psutil import virtual_memory
 
 import sqlite3
 from datetime import datetime
+from datetime import timedelta
 
 DATABASE = '../onewinet/digitemp.sqlite'
 
@@ -41,7 +42,7 @@ def config():
 @asem.route('/jqplot')
 def jqplot():
     '''Первая версия, последние три дня...'''
-    sdate = '2016-01-07'
+    sdate = (datetime.now() - timedelta(days=3)).strftime('%Y-%m-%d')
     page_name = u'Графики'
     # s1 = [[2001,1], [2002,2],[2003,3]]
     # cur = get_db().cursor()
