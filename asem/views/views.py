@@ -40,6 +40,8 @@ def config():
 
 @asem.route('/jqplot')
 def jqplot():
+    '''Первая версия, последние три дня...'''
+    sdate = '2016-01-07'
     page_name = u'Графики'
     # s1 = [[2001,1], [2002,2],[2003,3]]
     # cur = get_db().cursor()
@@ -58,9 +60,9 @@ def jqplot():
                   row[2]])
     query = ''' SELECT cdt_cdate, cdt_ctime, cdt_value
                 FROM curdata
-                WHERE cdt_cdate > '2016-01-01'
+                WHERE cdt_cdate > '%s'
                     and cdt_prylad = 1
-    '''
+    ''' % (sdate, )
     cur = get_db().execute(query)
     rows = cur.fetchall()
     s2 = []
