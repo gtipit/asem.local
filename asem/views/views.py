@@ -47,9 +47,9 @@ def jqplot():
     # cur = get_db().cursor()
     query = ''' SELECT cdt_cdate, cdt_ctime, cdt_value
                 FROM curdata
-                WHERE cdt_cdate > '2016-01-01'
+                WHERE cdt_cdate > '%s'
                     and cdt_prylad = 2
-    '''
+    ''' % (sdate, )
     cur = get_db().execute(query)
     rows = cur.fetchall()
     s1 = []
