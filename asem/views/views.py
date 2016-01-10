@@ -44,38 +44,27 @@ def jqplot():
     '''Первая версия, последние три дня...'''
     sdate = (datetime.now() - timedelta(days=3)).strftime('%Y-%m-%d')
     page_name = u'Графики'
-    # s1 = [[2001,1], [2002,2],[2003,3]]
+    avias = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    seres = [[] for i in avias]
     # cur = get_db().cursor()
-    query = ''' SELECT cdt_cdate, cdt_ctime, cdt_value
+    query = ''' SELECT cdt_prylad, cdt_cdate, cdt_ctime, cdt_value
                 FROM curdata
                 WHERE cdt_cdate > '%s'
-                    and cdt_prylad = 2
-    ''' % (sdate, )
+                    and cdt_prylad in (%s)
+    ''' % (sdate, ', '.join([str(x) for x in avias]))
+    # print query
     cur = get_db().execute(query)
     rows = cur.fetchall()
-    s1 = []
+    # s1 = []
     for row in rows:
-        s1.append([datetime.combine(datetime.strptime(row[0], '%Y-%m-%d'),
-                                    datetime.strptime(row[1], '%H:%M:%S').time()
-                                    ).strftime("%Y-%m-%d %H:%M"),
-                  row[2]])
-    query = ''' SELECT cdt_cdate, cdt_ctime, cdt_value
-                FROM curdata
-                WHERE cdt_cdate > '%s'
-                    and cdt_prylad = 1
-    ''' % (sdate, )
-    cur = get_db().execute(query)
-    rows = cur.fetchall()
-    s2 = []
-    for row in rows:
-        s2.append([datetime.combine(datetime.strptime(row[0], '%Y-%m-%d'),
-                                    datetime.strptime(row[1], '%H:%M:%S').time()
-                                    ).strftime("%Y-%m-%d %H:%M"),
-                  row[2]])
+        seres[row[0]].append([datetime.combine(datetime.strptime(row[1], '%Y-%m-%d'),
+                                               datetime.strptime(row[2], '%H:%M:%S').time()
+                                               ).strftime("%Y-%m-%d %H:%M"),
+                             row[3]])
     cur.close()
+    # print seres
     return render_template('jqplot.html', page_name=page_name,
-                           s1=s1,
-                           s2=s2,
+                           seres=seres,
                            )
 
 
